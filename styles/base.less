@@ -4,22 +4,8 @@ atom-text-editor, :host {
   background-color: @syntax-background-color;
   color: @syntax-text-color;
 
-  .gutter {
-    background-color: @syntax-gutter-background-color;
-    color: @syntax-gutter-text-color;
-
-    .line-number.cursor-line {
-      background-color: @syntax-gutter-background-color-selected;
-      color: @syntax-gutter-text-color-selected;
-    }
-
-    .line-number.cursor-line-no-selection {
-      color: @syntax-gutter-text-color-selected;
-    }
-  }
-
   .wrap-guide {
-    color: @syntax-wrap-guide-color;
+    background-color: @syntax-wrap-guide-color;
   }
 
   .indent-guide {
@@ -30,30 +16,50 @@ atom-text-editor, :host {
     color: @syntax-invisible-character-color;
   }
 
-  .search-results {
-    .marker .region {
-      background-color: transparent;
-      border: @syntax-result-marker-color;
-    }
+  .gutter {
+    background-color: @syntax-gutter-background-color;
+    color: @syntax-gutter-text-color;
 
-    .marker.current-result .region {
-      border: @syntax-result-marker-color-selected;
+    .line-number {
+      &.cursor-line {
+        background-color: @syntax-gutter-background-color-selected;
+        color: @syntax-gutter-text-color-selected;
+      }
+
+      &.cursor-line-no-selection {
+        color: @syntax-gutter-text-color-selected;
+      }
     }
   }
 
+  .gutter .line-number.folded,
+  .gutter .line-number:after,
+  .fold-marker:after {
+    color: @light-gray;
+  }
+
+  .invisible {
+    color: @syntax-text-color;
+  }
+
   .cursor {
-    border-color: @syntax-cursor-color;
+    color: @syntax-cursor-color;
   }
 
   .selection .region {
     background-color: @syntax-selection-color;
   }
+}
 
-  .line-number.cursor-line-no-selection,
-  .line.cursor-line {
-    background-color: #303030;
-  }
+atom-text-editor .search-results .marker .region,
+:host .search-results .marker .region {
+  background-color: transparent;
+  border: 1px solid @syntax-result-marker-color;
+}
 
+atom-text-editor .search-results .marker.current-result .region,
+:host .search-results .marker.current-result .region {
+  border: 1px solid @syntax-result-marker-color-selected;
 }
 
 .comment {
@@ -107,7 +113,15 @@ atom-text-editor, :host {
   color: #CC9495;
 }
 
-.keyword, .keyword.control, .meta.selector.css, .entity.other.attribute-name {
+.keyword {
+  color: #f0dfaf;
+
+  &.operator {
+    color: #f0efd0;
+  }
+}
+
+.meta.selector.css, .entity.other.attribute-name {
   color: #FED6AF;
 }
 
@@ -116,7 +130,7 @@ atom-text-editor, :host {
   color: #FF8000;
 }
 
-.keyword.operator, .punctuation.definition.tag, .punctuation:not(.punctuation.definition.comment:not(.punctuation.definition)) {
+.punctuation.definition.tag, .punctuation:not(.punctuation.definition.comment:not(.punctuation.definition)) {
   color: #D0D1A8;
 }
 
@@ -129,7 +143,7 @@ atom-text-editor, :host {
 }
 
 .storage.type, .storage.modifier, .support.type {
-  color: #FFFB9D;
+  color: #dfdfbf;
 }
 
 .entity.name.class.variant {
@@ -178,9 +192,13 @@ atom-text-editor, :host {
   color: #898989;
 }
 
-.variable, .variable.parameter, .variable.other {
-  font-weight: bold;
+.variable {
   color: #FED6AF;
+
+  &.parameter {
+    font-weight: bold;
+    color: #FED6AF;
+  }
 }
 
 .support.function.construct {
@@ -199,7 +217,7 @@ atom-text-editor, :host {
   color: #C7BA18;
 }
 
-.meta.brace {
+.meta.brace, .section.punctuation {
   color: rgba(120, 206, 204, 0.5);
 }
 
@@ -299,4 +317,9 @@ atom-text-editor, :host {
 
 .markup.list {
   color: #DEDEDE;
+}
+
+atom-text-editor[mini] .scroll-view,
+:host([mini]) .scroll-view {
+  padding-left: 1px;
 }
