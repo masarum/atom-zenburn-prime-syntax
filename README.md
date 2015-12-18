@@ -2,7 +2,7 @@
 
 This is a fork from [colindean/atom-zenburn]
 (https://github.com/colindean/atom-zenburn) with some minor highlighting fixes
-and subtle color changes, mostly for JavaScript.
+and subtle color changes, mostly for JavaScript and Clojure.
 
 The original README follows:
 
